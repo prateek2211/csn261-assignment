@@ -12,10 +12,10 @@ void removeBlue()
 
     for (int i = 0; i < x; i++)
     {
-        for (int i = 0; i < y; i++)
+        for (int j = 0; j < y; j++)
         {
-            if (blue[x][y] > red[x][y] && blue[x][y] > green[x][y])
-                blue[x][y] = 0;
+            if (blue[i][j] > red[i][j] && blue[i][j] > green[i][j])
+                blue[i][j] = 0;
         }
     }
 }
@@ -23,10 +23,10 @@ void removeRed()
 {
     for (int i = 0; i < x; i++)
     {
-        for (int i = 0; i < y; i++)
+        for (int j = 0; j < y; j++)
         {
-            if (red[x][y] > blue[x][y] && red[x][y] > green[x][y])
-                red[x][y] = 0;
+            if (red[i][j] > blue[i][j] && red[i][j] > green[i][j])
+                red[i][j] = 0;
         }
     }
 }
@@ -34,10 +34,10 @@ void removeGreen()
 {
     for (int i = 0; i < x; i++)
     {
-        for (int i = 0; i < y; i++)
+        for (int j = 0; j < y; j++)
         {
-            if (green[x][y] > blue[x][y] && green[x][y] > red[x][y])
-                green[x][y] = 0;
+            if (green[i][j] > red[i][j] && green[i][j] > blue[i][j])
+                green[i][j] = 0;
         }
     }
 }
@@ -45,12 +45,12 @@ void preserveBlue()
 {
     for (int i = 0; i < x; i++)
     {
-        for (int i = 0; i < y; i++)
+        for (int j = 0; j < y; j++)
         {
-            if (green[x][y] > blue[x][y] && green[x][y] > red[x][y])
-                green[x][y] = 0;
-            else if (red[x][y] > blue[x][y] && red[x][y] > green[x][y])
-                red[x][y] = 0;
+            if (green[i][j] > blue[i][j] && green[i][j] > red[i][j])
+                green[i][j] = 0;
+            else if (red[i][j] > blue[i][j] && red[i][j] > green[i][j])
+                red[i][j] = 0;
         }
     }
 }
@@ -58,12 +58,12 @@ void preserveRed()
 {
     for (int i = 0; i < x; i++)
     {
-        for (int i = 0; i < y; i++)
+        for (int j = 0; j < y; j++)
         {
-            if (green[x][y] > blue[x][y] && green[x][y] > red[x][y])
-                green[x][y] = 0;
-            else if (blue[x][y] > red[x][y] && blue[x][y] > green[x][y])
-                blue[x][y] = 0;
+            if (green[i][j] > blue[i][j] && green[i][j] > red[i][j])
+                green[i][j] = 0;
+            else if (blue[i][j] > red[i][j] && blue[i][j] > green[i][j])
+                blue[i][j] = 0;
         }
     }
 }
@@ -71,16 +71,17 @@ void preserveGreen()
 {
     for (int i = 0; i < x; i++)
     {
-        for (int i = 0; i < y; i++)
+        for (int j = 0; j < y; j++)
         {
-            if (blue[x][y] > red[x][y] && blue[x][y] > green[x][y])
-                blue[x][y] = 0;
-            else if (red[x][y] > blue[x][y] && red[x][y] > green[x][y])
-                red[x][y] = 0;
+            if (blue[i][j] > red[i][j] && blue[i][j] > green[i][j])
+                blue[i][j] = 0;
+            else if (red[i][j] > blue[i][j] && red[i][j] > green[i][j])
+                red[i][j] = 0;
         }
     }
 }
-void inputFile(char* name,int arr[x][y]){
+void inputFile(char *name, int arr[x][y])
+{
     FILE *file = fopen(name, "r");
     char buffer[51200];
     int x = 0;
@@ -95,21 +96,32 @@ void inputFile(char* name,int arr[x][y]){
     }
     fclose(file);
 }
+void pixelValue(int x, int y)
+{
+    printf("Pixel Value at (%d,%d) :Blue = %d Red = %d Green = %d\n", x, y, blue[x][y], red[x][y], green[x][y]);
+}
 int main(int argc, char const *argv[])
 {
-    inputFile("/home/prateek/Downloads/2019_CSN-261_L1_Q3_SampleTestcases/Q3_Input/Q3_ip_Green.dat",green);
-    inputFile("/home/prateek/Downloads/2019_CSN-261_L1_Q3_SampleTestcases/Q3_Input/Q3_ip_Red.dat",red);
-    inputFile("/home/prateek/Downloads/2019_CSN-261_L1_Q3_SampleTestcases/Q3_Input/Q3_ip_Blue.dat",blue);
+    inputFile("/home/prateek/Downloads/2019_CSN-261_L1_Q3_SampleTestcases/Q3_Input/Q3_ip_Green.dat", green);
+    inputFile("/home/prateek/Downloads/2019_CSN-261_L1_Q3_SampleTestcases/Q3_Input/Q3_ip_Red.dat", red);
+    inputFile("/home/prateek/Downloads/2019_CSN-261_L1_Q3_SampleTestcases/Q3_Input/Q3_ip_Blue.dat", blue);
+    printf("Before removing green\n");
+    pixelValue(1, 2);
+    pixelValue(16, 12);
+    pixelValue(500, 600);
     removeGreen();
     FILE *writer = fopen("/tmp/program.txt", "w");
     for (int i = 0; i < x; i++)
     {
-        for (int j = 0; j < y-1; j++)
+        for (int j = 0; j < y - 1; j++)
             fprintf(writer, "%d,", green[i][j]);
-        fprintf(writer, "%d", green[x-1][y-1]);
+        fprintf(writer, "%d", green[x - 1][y - 1]);
         fprintf(writer, "\n");
     }
-
+    printf("After removing green\n");
+    pixelValue(1, 2);
+    pixelValue(16, 12);
+    pixelValue(500, 600);
     fclose(writer);
     return 0;
 }
