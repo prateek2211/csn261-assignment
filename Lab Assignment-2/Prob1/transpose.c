@@ -2,12 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+/**
+ * Raises error with error code 1
+ * @param message Message to be printed to stdout
+ */
 void error(char *message)
 {
     printf("%s\n", message);
     exit(EXIT_FAILURE);
 }
 int lenOut;
+/**
+ * Encrypts the given input data
+ * @param input Given Input Data
+ */
 char *encrypt(char *input, int n, int a, int b)
 {
     char *buffer = (char *)calloc(n, sizeof(char));
@@ -26,20 +34,18 @@ char *encrypt(char *input, int n, int a, int b)
 }
 int main(int argc, char const *argv[])
 {
-    // if (argc < 5)
-    //     error("Error: Missing arguments");
-    // int n = atoi(argv[1]);
-    // int a = atoi(argv[2]);
-    // int b = atoi(argv[3]);
-    // char *outputFile = strdup(argv[4]);
-    FILE *input = fopen("/home/prateek/Documents/csn261-assignment/Lab Assignment-2/Prob1/input.txt", "r");
+    if (argc < 5)
+        error("Error: Missing arguments");
+    int n = atoi(argv[1]);
+    int a = atoi(argv[2]);
+    int b = atoi(argv[3]);
+    char *inputFile = strdup(argv[4]);
+    FILE *input = fopen(inputFile, "r");
     FILE *output = fopen("/home/prateek/Documents/csn261-assignment/Lab Assignment-2/Prob1/output.txt", "w");
     char buffer[1024];
-    int n = 0;
     while (fgets(buffer, sizeof(buffer), input))
     {
-        n++;
-        char *enc = encrypt(buffer, 5, 3, 2);
+        char *enc = encrypt(buffer, n, a, b);
         fwrite(enc, sizeof(char), lenOut, output);
     }
     return 0;

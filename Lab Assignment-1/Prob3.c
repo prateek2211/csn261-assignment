@@ -1,12 +1,35 @@
+/**
+* @file Prob3.c
+* @brief this file contains code for problem1 of Lab-Assignment1
+*
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
 int x = 953;
 int y = 1268;
+/**
+ * Represents pixels for red color
+ */
 int red[953][1268];
+/**
+ * Represents pixels for green color
+ */
 int green[953][1268];
+/**
+ * Represents pixels for blue color
+ */
 int blue[953][1268];
+/**
+* Removes blue shades
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 void removeBlue()
 {
 
@@ -19,6 +42,12 @@ void removeBlue()
         }
     }
 }
+/*
+* Removes red shades
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 void removeRed()
 {
     for (int i = 0; i < x; i++)
@@ -30,6 +59,9 @@ void removeRed()
         }
     }
 }
+/**
+* Removes green shades
+ */
 void removeGreen()
 {
     for (int i = 0; i < x; i++)
@@ -41,6 +73,9 @@ void removeGreen()
         }
     }
 }
+/**
+* Removes all shades except blue
+ */
 void preserveBlue()
 {
     for (int i = 0; i < x; i++)
@@ -54,6 +89,12 @@ void preserveBlue()
         }
     }
 }
+/**
+* Removes all shades except red
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 void preserveRed()
 {
     for (int i = 0; i < x; i++)
@@ -67,6 +108,12 @@ void preserveRed()
         }
     }
 }
+/**
+* Removes all shades except green
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 void preserveGreen()
 {
     for (int i = 0; i < x; i++)
@@ -80,6 +127,12 @@ void preserveGreen()
         }
     }
 }
+/**
+* Read the file and stores the pixel value in array
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 void inputFile(char *name, int arr[x][y])
 {
     FILE *file = fopen(name, "r");
@@ -96,6 +149,12 @@ void inputFile(char *name, int arr[x][y])
     }
     fclose(file);
 }
+/**
+* Prints the pixel value at x, y position
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 void pixelValue(int x, int y)
 {
     printf("Pixel Value at (%d,%d) :Blue = %d Red = %d Green = %d\n", x, y, blue[x][y], red[x][y], green[x][y]);

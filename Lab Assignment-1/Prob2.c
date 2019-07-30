@@ -1,11 +1,24 @@
+/**
+* @file Prob2.c
+* @brief this file contains code for problem1 of Lab-Assignment1
+*
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
 int *deque;
 int front = -1;
 int rear = 0;
-int capacity = 4;
-
+int capacity = 2;
+/**
+* Returns the size of deque
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 int dequeSize()
 {
     if (front == -1)
@@ -15,6 +28,12 @@ int dequeSize()
         return capacity - 1 + size;
     return size;
 }
+/**
+* Changes the size of deque and return new deque
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 int *resizeDeque(int newCapacity)
 {
     int *newDeque = (int *)calloc(newCapacity, sizeof(int));
@@ -38,6 +57,12 @@ int *resizeDeque(int newCapacity)
     capacity = newCapacity;
     return newDeque;
 }
+/**
+* Inserts the data at front of deque
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 void insertFront(int data)
 {
     if (front == rear + 1)
@@ -53,6 +78,12 @@ void insertFront(int data)
         front--;
     deque[front] = data;
 }
+/**
+* Inserts the data at rear of deque
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 void insertRear(int data)
 {
     if (front == rear + 1)
@@ -68,6 +99,12 @@ void insertRear(int data)
         rear++;
     deque[rear] = data;
 }
+/**
+* Print the contents of the deque
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 void printDeque()
 {
     if (rear >= front)
@@ -84,6 +121,12 @@ void printDeque()
             printf("%d ", deque[i]);
     }
 }
+/**
+* Deletes the data at front of deque
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 void deleteFront()
 {
     if (front == -1)
@@ -95,6 +138,12 @@ void deleteFront()
     if (dequeSize() == capacity / 2)
         deque = resizeDeque(capacity / 2);
 }
+/**
+* Deletes the data at rear of deque
+*@author Prateek Sachan
+*
+*@date 07/30/2019
+ */
 void deleteRear()
 {
     if (front == -1)
@@ -107,18 +156,37 @@ void deleteRear()
         deque = resizeDeque(capacity / 2);
 }
 
+void printSize()
+{
+    printf("Deque Capacity = %d\n", capacity);
+}
+
 int main(int argc, char const *argv[])
 {
     deque = (int *)calloc(capacity, sizeof(int));
     insertFront(1);
-    insertFront(3);
-    insertFront(9);
-    insertRear(5);
-    insertRear(8);
-    insertRear(8);
-    deleteRear();
-    deleteFront();
-
     printDeque();
+    printSize();
+    insertFront(3);
+    printDeque();
+    printSize();
+    insertFront(9);
+    printDeque();
+    printSize();
+    insertRear(5);
+    printDeque();
+    printSize();
+    insertRear(8);
+    printDeque();
+    printSize();
+    insertRear(8);
+    printDeque();
+    printSize();
+    deleteRear();
+    printDeque();
+    printSize();
+    deleteFront();
+    printDeque();
+    printSize();
     return 0;
 }
