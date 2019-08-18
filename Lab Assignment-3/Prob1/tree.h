@@ -1,11 +1,11 @@
+#ifndef TREE_INCLUDE
+#define TREE_INCLUDE
 class Node
 {
-private:
+public:
     int data;
     Node *left;
     Node *right;
-    friend class BST;
-    friend class AvlTree;
 };
 class BST
 {
@@ -20,6 +20,7 @@ public:
     int height(Node *);
     void insert(int);
     void inorderTraversal();
+    friend class AvlTree;
 };
 class AvlTree : public BST
 {
@@ -31,16 +32,35 @@ private:
 
 public:
     AvlTree();
+    void BSTtoAVL(BST);
     void inorderTraversal();
     void insert(int);
 };
-class RedBlackTree
+
+class RBtree
 {
-private:
-    Node *root;
-    void insert(int, Node *);
+    struct node
+    {
+        int data;
+        node *parent;
+        char color;
+        node *left;
+        node *right;
+    };
+    node *root;
 
 public:
+    RBtree()
+    {
+        root = nullptr;
+    }
+    node *newNode(node *, int);
     void insert(int);
+    void fixInsert(node *);
+    void rotateLeft(node *);
+    node *insertBST(node *root, int data);
+    void rotateRight(node *);
+    void traverseInorder(node *root);
     void inorderTraversal();
 };
+#endif

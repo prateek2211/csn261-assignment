@@ -1,6 +1,6 @@
 #include "tree.h"
+#include <vector>
 #include <iostream>
-
 
 void AvlTree::insert(int data)
 {
@@ -67,4 +67,34 @@ AvlTree::AvlTree()
 void AvlTree::inorderTraversal()
 {
     traverseInorder(root);
+}
+void bstToArr(std::vector<int> &arr, Node *node)
+{
+    if (!node)
+        return;
+    bstToArr(arr, node->left);
+    arr.push_back(node->data);
+    bstToArr(arr, node->right);
+}
+Node *arrToAvl(std::vector<int> &arr, int start, int end)
+{
+    if (start > end)
+        return NULL;
+    int mid = (end + start) / 2;
+    if (start == end)
+        mid = start;
+    Node *root = new Node();
+    root->left = NULL;
+    root->right = NULL;
+    root->data = arr[mid];
+    root->left = arrToAvl(arr, start, mid - 1);
+    root->right = arrToAvl(arr, mid + 1, end);
+    return root;
+}
+void AvlTree::BSTtoAVL(BST bst)
+{
+    std::vector<int> arr;
+    bstToArr(arr, bst.root);
+    root = arrToAvl(arr, 0, arr.size() - 1);
+    std::cout << root->data;
 }
