@@ -10,10 +10,14 @@ public:
 class BST
 {
 private:
-    Node *root;
     void insert(int, Node **);
 
 public:
+    Node *root;
+    void allPath(Node *, int path[], int pathLen);
+    void printLeafRoot(Node *node);
+    void printAllHelper(Node *root);
+    void printAll();
     void traverseInorder(Node *root);
     BST();
     int balanceFactor(Node *);
@@ -32,6 +36,7 @@ private:
 
 public:
     AvlTree();
+    void printAll();
     void BSTtoAVL(BST);
     void inorderTraversal();
     void insert(int);
@@ -58,6 +63,11 @@ public:
     void insert(int);
     void fixInsert(node *);
     void rotateLeft(node *);
+    void allPath(node *, int path[], int pathLen);
+    void printLeafRoot(node *node);
+    void printAllHelper(node *root);
+    void printArray(int arr[], int len);
+    void printAll();
     node *insertBST(node *root, int data);
     void rotateRight(node *);
     void traverseInorder(node *root);

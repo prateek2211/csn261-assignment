@@ -98,3 +98,7 @@ void AvlTree::BSTtoAVL(BST bst)
     root = arrToAvl(arr, 0, arr.size() - 1);
     std::cout << root->data;
 }
+void AvlTree::printAll()
+{
+    printAllHelper(root);
+}
