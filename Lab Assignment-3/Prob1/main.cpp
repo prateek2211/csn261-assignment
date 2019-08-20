@@ -47,26 +47,26 @@ int main(int argc, char const *argv[])
                 break;
             }
             break;
-        case 4:
+        case 5:
             cout << "Select type of tree:\n1.BST\n2.AVL\n3.RB\n";
             cin >> tree;
             switch (tree)
             {
             case 1:
-                bst.inorderTraversal();
+                bst.levelIndentation();
                 break;
             case 2:
-                avl.inorderTraversal();
+                avl.levelIndentation();
                 break;
             case 3:
-                rb.inorderTraversal();
+                rb.levelIndentation();
                 break;
             default:
                 cout << endl;
                 break;
             }
             break;
-        case 5:
+        case 4:
             cout << "Select type of tree:\n1.BST\n2.AVL\n3.RB\n";
             cin >> tree;
             switch (tree)

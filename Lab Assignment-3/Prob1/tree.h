@@ -20,6 +20,8 @@ public:
     void printAll();
     void traverseInorder(Node *root);
     BST();
+    void levelIndentationHelper(Node *, int);
+    void levelIndentation();
     int balanceFactor(Node *);
     int height(Node *);
     void insert(int);
@@ -38,6 +40,7 @@ public:
     AvlTree();
     void printAll();
     void BSTtoAVL(BST);
+    void levelIndentation();
     void inorderTraversal();
     void insert(int);
 };
@@ -71,6 +74,9 @@ public:
     node *insertBST(node *root, int data);
     void rotateRight(node *);
     void traverseInorder(node *root);
+    int height(node *node);
+    void levelIndentationHelper(node *, int);
+    void levelIndentation();
     void inorderTraversal();
 };
 #endif

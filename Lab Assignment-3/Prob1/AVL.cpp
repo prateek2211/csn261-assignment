@@ -102,3 +102,7 @@ void AvlTree::printAll()
 {
     printAllHelper(root);
 }
+void AvlTree::levelIndentation()
+{
+    levelIndentationHelper(root, 0);
+}

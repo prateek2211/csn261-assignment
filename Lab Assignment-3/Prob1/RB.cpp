@@ -198,3 +198,34 @@ void RBtree::printAll()
 {
     printAllHelper(root);
 }
+void RBtree::levelIndentationHelper(node *n, int h)
+{
+    if (n == NULL)
+        return;
+    int diff = std::abs(height(n->left) - height(n->right));
+    if (n->left == NULL && n->right == NULL)
+    {
+        for (int i = 0; i < h; i++)
+            std::cout << "\t";
+        std::cout << n->data << "[" << n->color << "]\n";
+    }
+    else
+    {
+        for (int i = 0; i < h; i++)
+            std::cout << "\t";
+        std::cout << n->data << "[" << diff << "]"
+                  << "[" << n->color << "]\n";
+    }
+    levelIndentationHelper(n->left, h + 1);
+    levelIndentationHelper(n->right, h + 1);
+}
+void RBtree::levelIndentation()
+{
+    levelIndentationHelper(root, 0);
+}
+int RBtree::height(node *n)
+{
+    if (n == nullptr)
+        return 0;
+    return std::max(height(n->left), height(n->right)) + 1;
+}

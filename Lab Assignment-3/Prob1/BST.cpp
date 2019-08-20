@@ -94,3 +94,27 @@ void BST::printAll()
 {
     printAllHelper(root);
 }
+void BST::levelIndentationHelper(Node *node, int h)
+{
+    if (node == NULL)
+        return;
+    int diff = std::abs(height(node->left) - height(node->right));
+    if (node->left == NULL && node->right == NULL)
+    {
+        for (int i = 0; i < h; i++)
+            std::cout << "\t";
+        std::cout << node->data << "\n";
+    }
+    else
+    {
+        for (int i = 0; i < h; i++)
+            std::cout << "\t";
+        std::cout << node->data << "[" << diff << "]\n";
+    }
+    levelIndentationHelper(node->left, h + 1);
+    levelIndentationHelper(node->right, h + 1);
+}
+void BST::levelIndentation()
+{
+    levelIndentationHelper(root, 0);
+}
