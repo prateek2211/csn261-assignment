@@ -1,3 +1,8 @@
+/**
+ * @file BST.cpp
+ * @brief This file contains all the implementation methods of BST tree
+ * @author Prateek Sachan
+*/
 #include "tree.h"
 #include <iostream>
 #include <vector>
@@ -9,10 +14,16 @@ void BST::traverseInorder(Node *node)
     std::cout << node->data << " ";
     traverseInorder(node->right);
 }
+/**
+ * Inorder Traversal of tree
+*/
 void BST::inorderTraversal()
 {
     traverseInorder(root);
 }
+/**
+ * Insert the data to binary search tree
+*/
 void BST::insert(int data)
 {
     insert(data, &root);
@@ -34,10 +45,16 @@ void BST::insert(int data, Node **node)
     else
         std::cout << "Element already exists\n";
 }
+/**
+ * Constructor for BST
+*/
 BST::BST()
 {
     root = NULL;
 }
+/**
+ * Returns the balance factor of the given node
+*/
 int BST::balanceFactor(Node *node)
 {
     if (node == nullptr)
@@ -45,6 +62,9 @@ int BST::balanceFactor(Node *node)
     int result = height(node->left) - height(node->right);
     return result;
 }
+/**
+ * Returns the height of the given node
+*/
 int BST::height(Node *node)
 {
     if (node == nullptr)
@@ -59,6 +79,9 @@ void printArray(int arr[], int len)
     }
     std::cout << arr[len - 1] << std::endl;
 }
+/**
+ * Prints all paths in the given tree
+*/
 void BST::allPath(Node *node, int path[], int pathLen)
 {
     if (node == NULL)
@@ -114,6 +137,9 @@ void BST::levelIndentationHelper(Node *node, int h)
     levelIndentationHelper(node->left, h + 1);
     levelIndentationHelper(node->right, h + 1);
 }
+/**
+ * Print the BST in the terminal using level-wise indentation
+*/
 void BST::levelIndentation()
 {
     levelIndentationHelper(root, 0);

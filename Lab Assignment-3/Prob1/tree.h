@@ -1,3 +1,8 @@
+/**
+ * @file tree
+ * @brief This file contains all the declaration of different trees
+ * @author Prateek Sachan
+*/
 #ifndef TREE_INCLUDE
 #define TREE_INCLUDE
 class Node

@@ -1,6 +1,14 @@
+/**
+ * @file RB.cpp
+ * @brief This file contains all the implementation methods of Red Black tree
+ * @author Prateek Sachan
+*/
 #include <iostream>
 #include "tree.h"
 using namespace std;
+/**
+ * Returns new node of rb tree having given data and parent
+*/
 RBtree::node *RBtree::newNode(node *parent, int data)
 {
     node *temp = new node;
@@ -26,11 +34,17 @@ RBtree::node *RBtree::insertBST(node *n, int data)
     else
         insertBST(n->right, data);
 }
+/**
+ * Insert the data to rb tree
+*/
 void RBtree::insert(int data)
 {
     node *t = insertBST(root, data);
     fixInsert(t);
 }
+/**
+ * Fixes the rb tree after insertion
+*/
 void RBtree::fixInsert(node *t)
 {
     if (t == root)
@@ -84,7 +98,9 @@ void RBtree::fixInsert(node *t)
         }
     }
 }
-
+/**
+ * Rotates the rb tree to right about node
+*/
 void RBtree::rotateLeft(node *p)
 {
     if (p->right == NULL)
@@ -114,6 +130,9 @@ void RBtree::rotateLeft(node *p)
         p->parent = temp;
     }
 }
+/**
+ * Rotates the rb tree to right about node
+*/
 void RBtree::rotateRight(node *p)
 {
     if (p->left == NULL)
@@ -143,6 +162,9 @@ void RBtree::rotateRight(node *p)
         p->parent = temp;
     }
 }
+/**
+ * Inorder Traversal of tree
+*/
 void RBtree::inorderTraversal()
 {
     traverseInorder(root);
@@ -155,6 +177,9 @@ void RBtree::traverseInorder(node *node)
     std::cout << node->data << " ";
     traverseInorder(node->right);
 }
+/**
+ * Prints all the elements of the array
+*/
 void RBtree::printArray(int arr[], int len)
 {
     for (int i = 0; i < len - 1; i++)
@@ -194,6 +219,9 @@ void RBtree::printAllHelper(node *root)
     printAllHelper(root->left);
     printAllHelper(root->right);
 }
+/**
+ * Prints all path in the tree
+*/
 void RBtree::printAll()
 {
     printAllHelper(root);
@@ -219,10 +247,16 @@ void RBtree::levelIndentationHelper(node *n, int h)
     levelIndentationHelper(n->left, h + 1);
     levelIndentationHelper(n->right, h + 1);
 }
+/**
+ * Print the RB tree in the terminal using level-wise indentation
+*/
 void RBtree::levelIndentation()
 {
     levelIndentationHelper(root, 0);
 }
+/**
+ * Returns the height of given node
+*/
 int RBtree::height(node *n)
 {
     if (n == nullptr)

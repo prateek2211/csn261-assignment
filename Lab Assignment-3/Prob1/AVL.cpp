@@ -1,11 +1,22 @@
+/**
+ * @file AVL.cpp
+ * @brief This file contains all the implementation methods of AVL tree
+ * @author Prateek Sachan
+*/
 #include "tree.h"
 #include <vector>
 #include <iostream>
 
+/**
+ * Insert the data to avl tree
+*/
 void AvlTree::insert(int data)
 {
     insert(data, &root);
 }
+/**
+ * Rotates the avl tree to left about node
+*/
 void AvlTree::rotateLeft(Node **node)
 {
     Node *y = (*node)->right;
@@ -14,6 +25,9 @@ void AvlTree::rotateLeft(Node **node)
     (*node)->right = T2;
     (*node) = y;
 }
+/**
+ * Rotates the avl tree to right about node
+*/
 void AvlTree::rotateRight(Node **node)
 {
     Node *x = (*node)->left;
@@ -60,10 +74,16 @@ void AvlTree::insert(int data, Node **node)
     else if (balanceFactor(*node) > 1 && (*node)->left->data > data)
         rotateRight(node);
 }
+/**
+ * Constructor for avl tree
+*/
 AvlTree::AvlTree()
 {
     root = NULL;
 }
+/**
+ * Inorder Traversal of tree
+*/
 void AvlTree::inorderTraversal()
 {
     traverseInorder(root);
@@ -91,6 +111,9 @@ Node *arrToAvl(std::vector<int> &arr, int start, int end)
     root->right = arrToAvl(arr, mid + 1, end);
     return root;
 }
+/**
+ * Convert given bst to avl tree
+*/
 void AvlTree::BSTtoAVL(BST bst)
 {
     std::vector<int> arr;
@@ -98,10 +121,16 @@ void AvlTree::BSTtoAVL(BST bst)
     root = arrToAvl(arr, 0, arr.size() - 1);
     std::cout << root->data;
 }
+/**
+ * Prints all paths in the given tree
+*/
 void AvlTree::printAll()
 {
     printAllHelper(root);
 }
+/**
+ * Print the AVL tree in the terminal using level-wise indentation
+*/
 void AvlTree::levelIndentation()
 {
     levelIndentationHelper(root, 0);
