@@ -45,6 +45,8 @@ public:
     AvlTree();
     void printAll();
     void BSTtoAVL(BST);
+    void BSTtoAVLV2(BST);
+    void helper(Node*);
     void levelIndentation();
     void inorderTraversal();
     void insert(int);

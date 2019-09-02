@@ -121,6 +121,18 @@ void AvlTree::BSTtoAVL(BST bst)
     root = arrToAvl(arr, 0, arr.size() - 1);
     std::cout << root->data;
 }
+void AvlTree::helper(Node *n)
+{
+    if (n == NULL)
+        return;
+    helper(n->left);
+    insert(n->data);
+    helper(n->right);
+}
+void AvlTree::BSTtoAVLV2(BST bst)
+{
+    helper(bst.root);
+}
 /**
  * Prints all paths in the given tree
 */

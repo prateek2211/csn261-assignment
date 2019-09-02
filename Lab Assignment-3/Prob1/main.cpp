@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
             break;
 
         case 2:
-            avl.BSTtoAVL(bst);
+            avl.BSTtoAVLV2(bst);
             cout << "Created avl tree" << endl;
             break;
         case 3:
